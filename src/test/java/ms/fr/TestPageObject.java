@@ -1,5 +1,9 @@
 package ms.fr;
 
+import static org.junit.Assert.assertEquals;
+
+import java.util.concurrent.TimeUnit;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,6 +19,7 @@ public class TestPageObject {
 	@Before
 	public void setUp() {
 		driver = TechnicalTools.choixNav(ENavigators.Opera);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 	
 	@After
@@ -40,7 +45,10 @@ public class TestPageObject {
 	PageShoppingCart page_shopping_cart = page_animal_race.clickAddCart(driver);
 	page_shopping_cart = page_shopping_cart.changementQuantite(driver, 2);
 	
-	System.out.println(page_shopping_cart.value);
+	double prix_total = Double.parseDouble(page_shopping_cart.value_total.getText());
+	double prix_unitaire = Double.parseDouble(page_shopping_cart.value.getText());
+	
+	assertEquals("Le prix total n'est pas correct.", prix_unitaire, prix_total/2, 0.0);
 	
 	}
 }

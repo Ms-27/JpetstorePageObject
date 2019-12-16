@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class PageAnimalRace {
-	@FindBy (xpath="//a[contains(@href, 'EST-3')]") 
+	@FindBy (xpath="//a[contains(@href, 'EST-3')][@class='Button']") 
 	WebElement bouton_add_cart;
 	
 	public PageShoppingCart clickAddCart(WebDriver driver) {

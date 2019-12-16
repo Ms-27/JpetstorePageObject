@@ -6,16 +6,16 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class PageShoppingCart {
-	@FindBy (name="lines[0].quantity") 
+	@FindBy (xpath="//input[@id='lines0.quantity']") 
 	private WebElement quantity_field;
 	
 	@FindBy (name="update") 
 	private WebElement bouton_update;
 	
-	@FindBy (xpath="//tr[2]/td[6]/span") 
+	@FindBy (xpath="//tr[2]/td[7]/span") 
 	WebElement value_total;
 	
-	@FindBy (xpath="//tr[2]/td[7]/span") 
+	@FindBy (xpath="//tr[2]/td[6]/span") 
 	WebElement value;
 	
 	public PageShoppingCart changementQuantite(WebDriver driver, int i) {

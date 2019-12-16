@@ -9,7 +9,7 @@ public class PageAnimal {
 	@FindBy (xpath="//a[contains(@href, 'FI-SW-02')]") 
 	WebElement bouton_fish_sw02;
 	
-	public PageAnimalRace clickAnimalButton(WebDriver driver) {
+	public PageAnimalRace clickAnimalRaceButton(WebDriver driver) {
 		bouton_fish_sw02.click();
 		return PageFactory.initElements(driver, PageAnimalRace.class);
 	}

@@ -13,10 +13,10 @@ public class PageShoppingCart {
 	private WebElement bouton_update;
 	
 	@FindBy (xpath="//tr[2]/td[6]/span") 
-	private WebElement value_total;
+	WebElement value_total;
 	
 	@FindBy (xpath="//tr[2]/td[7]/span") 
-	private WebElement value;
+	WebElement value;
 	
 	public PageShoppingCart changementQuantite(WebDriver driver, int i) {
 		quantity_field.clear();

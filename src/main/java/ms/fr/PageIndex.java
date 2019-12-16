@@ -9,7 +9,7 @@ public class PageIndex {
 	@FindBy (xpath="//a[@href='/login']") 
 	WebElement bouton_signin;
 	
-	public PageLogin clicSignInLink(WebDriver driver) {
+	public PageLogin clicSignInButton(WebDriver driver) {
 		bouton_signin.click();
 		return PageFactory.initElements(driver, PageLogin.class);
 	}

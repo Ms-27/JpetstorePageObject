@@ -15,12 +15,12 @@ public class PageLogin {
 	@FindBy (xpath="//input[@value='Login']") 
 	private WebElement submit_button;
 	
-	public PageAcceuil logIn(WebDriver driver, String username, String password) {
+	public PageAccueil logIn(WebDriver driver, String username, String password) {
 		username_field.clear();
 		username_field.sendKeys(username);
 		password_field.clear();
 		password_field.sendKeys(password);
 		submit_button.click();
-		return PageFactory.initElements(driver, PageAcceuil.class);
+		return PageFactory.initElements(driver, PageAccueil.class);
 	}
 }

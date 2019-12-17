@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class PageLogin {
+public class PageLogin extends PageAbstractMenu{
 	@FindBy (name="username") 
 	private WebElement username_field;
 	
@@ -16,10 +16,8 @@ public class PageLogin {
 	private WebElement submit_button;
 	
 	public PageAccueil logIn(WebDriver driver, String username, String password) {
-		username_field.clear();
-		username_field.sendKeys(username);
-		password_field.clear();
-		password_field.sendKeys(password);
+		TechnicalTools.remplirChamp(username_field, username);
+		TechnicalTools.remplirChamp(password_field, password);
 		submit_button.click();
 		return PageFactory.initElements(driver, PageAccueil.class);
 	}

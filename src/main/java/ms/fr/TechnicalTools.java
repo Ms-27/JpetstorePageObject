@@ -38,5 +38,9 @@ public class TechnicalTools {
 		w.clear();
 		w.sendKeys(s);
 	}
+	
+	static double conversionValeurChampPrix(WebElement w) {
+		return Double.parseDouble(w.getText());
+	}
 
 }

@@ -5,7 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class PageShoppingCart {
+public class PageShoppingCart extends PageAbstractMenu {
+	@FindBy (xpath="//h2")
+	WebElement titre;
+	
 	@FindBy (xpath="//input[@id='lines0.quantity']") 
 	private WebElement quantity_field;
 	
@@ -19,9 +22,7 @@ public class PageShoppingCart {
 	WebElement value;
 	
 	public PageShoppingCart changementQuantite(WebDriver driver, int i) {
-		quantity_field.clear();
-		String s = Integer.toString(i);
-		quantity_field.sendKeys(s);
+		TechnicalTools.remplirChamp(quantity_field, Integer.toString(i));
 		bouton_update.click();
 		return PageFactory.initElements(driver, PageShoppingCart.class);
 	}

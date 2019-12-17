@@ -1,9 +1,7 @@
 package ms.fr;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 public class PageAccount extends PageAbstractMenu {
@@ -14,11 +12,25 @@ public class PageAccount extends PageAbstractMenu {
 	WebElement select_language;
 	
 	@FindBy (xpath="//select[@id='favouriteCategoryId']")
-	WebElement select_animal_pref;
+	WebElement select_animal_fav;
 	
-	public PageAccount changeLanguage(WebDriver driver, String s) {
+	@FindBy (name="listOption")
+	WebElement checkbox_mylist;
+	
+	@FindBy (name="bannerOption")
+	WebElement checkbox_mybanner;
+	
+	public void changeLanguage(String s) {
 		Select select = new Select(select_language);
 		select.selectByValue(s);
-		return PageFactory.initElements(driver, PageAccount.class);
+	}
+	
+	public void changeFavAnimal(String s) {
+		Select select = new Select(select_animal_fav);
+		select.selectByValue(s);
+	}
+	
+	public void changeCheckboxMyList () {
+		checkbox_mylist.click();
 	}
 }

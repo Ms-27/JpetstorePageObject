@@ -21,6 +21,7 @@ public class TestPageObject {
 	String login = "j2ee";
 	String pwd = "j2ee";
 	String product_id = "FI-SW-02";
+	int quantity = 2;
 	
 	@Before
 	public void setUp() {
@@ -33,7 +34,7 @@ public class TestPageObject {
 		driver.quit();
 	}
 
-	@Ignore
+	//@Test
 	public void testJpetstore01() {
 	// accès à l'url de l'application
 	driver.get("https://jpetstore.cfapps.io/catalog");
@@ -57,7 +58,7 @@ public class TestPageObject {
 	PageShoppingCart page_shopping_cart = page_animal_race.clickAddCart(driver);
 	assertEquals("Shopping Cart", page_animal.titre_page_animal.getText());
 	
-	page_shopping_cart = page_shopping_cart.changementQuantite(driver, 2);
+	page_shopping_cart.changementQuantite(quantity);
 	
 	double prix_total = TechnicalTools.conversionValeurChampPrix(page_shopping_cart.value_total);
 	double prix_unitaire = TechnicalTools.conversionValeurChampPrix(page_shopping_cart.value);
@@ -66,9 +67,20 @@ public class TestPageObject {
 	
 	}
 	
-	@Test
+	//@Test
 	public void testJpetstore02() {
+		// accès à l'application et connexion
+		driver.get("https://jpetstore.cfapps.io/catalog");
+		PageIndex page_index = PageFactory.initElements(driver, PageIndex.class);
+		PageLogin page_login = page_index.clickSignIn(driver);
+		PageAccueil page_accueil = page_login.logIn(driver, login, pwd);
+		assertTrue(page_accueil.signout_button.isDisplayed());
+		assertEquals("Pas le bon message pour l'utilisateur", "ABC", page_accueil.message_accueil.getText());
+
+		PageAccount page_account = page_accueil.clickAccount(driver);
+		assertEquals("Account Information", page_account.titre2.getText());
 		
+		page_account.changeLanguage("Japanese");
 	}
 	
 }

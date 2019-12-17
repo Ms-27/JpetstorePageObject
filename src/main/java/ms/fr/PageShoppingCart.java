@@ -21,10 +21,9 @@ public class PageShoppingCart extends PageAbstractMenu {
 	@FindBy (xpath="//tr[2]/td[6]/span") 
 	WebElement value;
 	
-	public PageShoppingCart changementQuantite(WebDriver driver, int i) {
+	public void changementQuantite(int i) {
 		TechnicalTools.remplirChamp(quantity_field, Integer.toString(i));
 		bouton_update.click();
-		return PageFactory.initElements(driver, PageShoppingCart.class);
 	}
 
 }

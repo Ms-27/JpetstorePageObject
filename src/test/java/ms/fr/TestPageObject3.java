@@ -9,6 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 public class TestPageObject3 {
@@ -29,7 +30,7 @@ public class TestPageObject3 {
 	}
 	
 	@Test
-	public void testJpetstore02() {
+	public void testJpetstore03() {
 		// accès à l'application et connexion
 		driver.get("https://jpetstore.cfapps.io/catalog");
 		PageIndex page_index = PageFactory.initElements(driver, PageIndex.class);
@@ -43,7 +44,11 @@ public class TestPageObject3 {
 		assertTrue("Le tableau de résultat n'est pas présent", page_searchresult.th2.isDisplayed());
 		
 		// recherche dans le tableau et click sur le lien vers la page choix d'animal du
+		PageAnimalRace page_animal_race = page_searchresult.clickCellule(driver, "Angelfish", 1);
+//		assertTrue(page_animal_race.lien_item_tbl.isDisplayed());
 		
+//		PageSearchResult page_test = page_accueil.clickSearch(driver, search_word);;
+//		WebElement cellule = page_test.getCellule(driver, 3, 3);
 	}
 	
 }

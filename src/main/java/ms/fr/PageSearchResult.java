@@ -15,24 +15,28 @@ public class PageSearchResult extends PageAbstractMenu {
 	public int returnLineNumber(WebDriver driver, String s){ 
 		int ligneCourante = 1;
 		List<WebElement> liste_lignes = driver.findElements(By.xpath("//table/tbody/tr"));
+		System.out.println(ligneCourante);
 		for(WebElement ligne : liste_lignes) {
 			List<WebElement> liste_cases = ligne.findElements(By.xpath("td"));
-		   	if(liste_cases.get(2).getText().equals(s)){
+		   	if(liste_cases.get(1).getText().equals(s)){
 			return ligneCourante;	
 		   }
 	      ligneCourante++;
 		}
-		return -1;
+		return -1;	
 	}
 	
 	public WebElement getCellule(WebDriver driver, int row, int col){ 
 		WebElement element = driver.findElement(By.xpath("//table/tbody/tr["+row+"]/td["+col+"]"));
+		System.out.println(element.getText());
 		return element;
 	}
 	
 	public PageAnimalRace clickCellule(WebDriver driver, String s, int col) {
-		int row = returnLineNumber(driver, "Angelfish");
+		int row = returnLineNumber(driver, s);
+		System.out.println(row);
 		WebElement cellule = getCellule(driver, row, col);
+		System.out.println(cellule);
 		cellule.click();
 		return PageFactory.initElements(driver, PageAnimalRace.class);
 	}

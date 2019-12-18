@@ -34,7 +34,7 @@ public class TechnicalTools {
 		}
 	}
 	
-	static void remplirChamp(WebElement w,String s) {
+	static void remplirChamp(WebElement w, String s) {
 		w.clear();
 		w.sendKeys(s);
 	}

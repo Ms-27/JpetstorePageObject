@@ -15,6 +15,12 @@ public abstract class PageAbstractMenu {
 	@FindBy(xpath = "//a[contains(@href,'account')]")
 	protected WebElement account_button;
 	
+	@FindBy(name = "keywords")
+	protected WebElement search_field;
+	
+	@FindBy(xpath ="//input[@id='searchProducts']")
+	protected WebElement search_button;
+	
 	public PageLogin clickSignIn(WebDriver driver) {
 		signin_button.click();
 		return PageFactory.initElements(driver, PageLogin.class);
@@ -23,6 +29,12 @@ public abstract class PageAbstractMenu {
 	public PageAccount clickAccount(WebDriver driver) {
 		account_button.click();
 		return PageFactory.initElements(driver, PageAccount.class);
+	}
+	
+	public PageSearchResult clickSearch(WebDriver driver, String s) {
+		TechnicalTools.remplirChamp(search_field, s);
+		search_button.click();
+		return PageFactory.initElements(driver, PageSearchResult.class);
 	}
 
 }

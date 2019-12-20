@@ -12,6 +12,9 @@ public class PageAnimalRace extends PageAbstractMenu {
 	@FindBy (xpath="//table//a[contains(., 'EST-')]")
 	WebElement lien_item_tbl;
 	
+	@FindBy (xpath="//h2")
+	WebElement titre;
+	
 	public PageShoppingCart clickAddCart(WebDriver driver) {
 		bouton_add_cart.click();
 		return PageFactory.initElements(driver, PageShoppingCart.class);

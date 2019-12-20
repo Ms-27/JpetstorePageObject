@@ -1,5 +1,8 @@
 package ms.fr;
 
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -33,14 +36,61 @@ public class TechnicalTools {
 			return null;
 		}
 	}
-	
+
 	static void remplirChamp(WebElement w, String s) {
 		w.clear();
 		w.sendKeys(s);
 	}
-	
+
 	static double conversionValeurChampPrix(WebElement w) {
 		return Double.parseDouble(w.getText());
+	}
+
+//	public static int[] retournerNumeroDeLigne(String s) {
+//		int[] tab_cell = { 1, 1 };
+//		List<WebElement> liste_lignes = driver.findElements(By.xpath("table/tbody/tr"));
+//		for (WebElement ligne : liste_lignes) {
+//			List<WebElement> liste_colonnes = ligne.findElements(By.xpath("td"));
+//			tab_cell[1] = 1;
+//			for (WebElement colonne : liste_colonnes) {
+//				if (colonne.getText().equals(s)) {
+//					return tab_cell;
+//				}
+//				tab_cell[1]++;
+//			}
+//			tab_cell[0]++;
+//		}
+//		tab_cell[0] = -1;
+//		tab_cell[1] = -1;
+//		return tab_cell;
+//	}
+	
+	public static int[] returnRowCol(String s){ 
+		// on initialise les coordonnées de notre cellule
+		int[] cell = {1, 1};
+		// on instancie la liste de ligne avec le xpath du tableau
+		List<WebElement> list_row = driver.findElements(By.xpath("//table/tbody/tr"));
+		// 1ere boucle qui balaye les lignes
+		for(WebElement row : list_row) {
+		// on instancie la liste des colonnes
+			List<WebElement> list_col = row.findElements(By.xpath("td"));
+		// on reset la valeur de colonne avant de balayer la ligne
+			cell[1] = 0;
+			for(WebElement col : list_col) {
+		// on balaye chaque colonne en cherchant la correspondance de la cellule avec la valeur s
+				if(col.getText().equals(s)) {
+					return cell;
+				}
+		// on incrémente la valeur de colonne
+				cell[1]++;
+			}
+		// on incrémente la valeur de ligne
+			cell[0]++;
+		}
+		// on 
+		cell[0] = -1;
+		cell[1] = -1;
+		return cell;	
 	}
 
 }

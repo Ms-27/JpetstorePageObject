@@ -29,7 +29,7 @@ public class TestPageObject3 {
 	}
 	
 	@Test
-	public void testJpetstore03() {
+	public void testJpetstore03() throws Exception {
 		// accès à l'application et connexion
 		driver.get("https://jpetstore.cfapps.io/catalog");
 		PageIndex page_index = PageFactory.initElements(driver, PageIndex.class);
@@ -41,6 +41,7 @@ public class TestPageObject3 {
 		// accès page search avec la recherche <search_word> + vérification
 		PageSearchResult page_searchresult = page_accueil.clickSearch(driver, search_word);
 		assertTrue("Le tableau de résultat n'est pas présent", page_searchresult.th2.isDisplayed());
+		TechnicalTools.takeSnapShot(driver, "src/main/screenshots/test-angelfish.jpg");
 		
 		// recherche dans le tableau et click sur le lien vers la page choix d'animal
 		PageAnimalRace page_animal_race = page_searchresult.clickCellule(driver, "Angelfish");

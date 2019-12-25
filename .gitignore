@@ -1,2 +1,3 @@
-src/main/resources/driver/*
+src/main/resources/driver/
 /target/
+src/main/resources/screenshots/
